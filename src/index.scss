@@ -7,6 +7,10 @@ $green: #14bd98;
 
 body {
   margin: 0;
+  height: 100vh;
+  // Fix iOS Safari Scroll Behavious with vh
+  height: -webkit-fill-available;
+  overflow: hidden;
   &,
   * {
     box-sizing: border-box;
@@ -56,6 +60,7 @@ button {
 input,
 button {
   transition: box-shadow 0.2s ease-in-out;
+  margin: unset;
   &:focus,
   &:hover:not(:disabled) {
     outline: none;
