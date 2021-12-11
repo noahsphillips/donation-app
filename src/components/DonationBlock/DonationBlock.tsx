@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { isNumber } from "util";
 import NumberFormat from "react-number-format";
+import useDebounce from "hooks/useDebounce";
 import "./DonationBlock.scss";
 
-export const DonationBlock = () => {
-  const donationGoal = 5000;
-  const minDonation = 5;
+interface Props {
+  donationGoal: number;
+  minDonation: number;
+}
+
+export const DonationBlock = ({ donationGoal, minDonation }: Props) => {
   const [donors, setDonors] = useState(0);
   const [totalDonated, setTotalDonated] = useState(0);
   // Can be empty string if the user has not donated yet to not force the input to show a value of $0 and be empty instead
@@ -14,17 +18,22 @@ export const DonationBlock = () => {
   const [progress, setProgress] = useState(0);
   const [isFunded, setIsFunded] = useState(false);
 
+  // Debounce the donation so the error msg doesn't appear as user is typing out a
+  // number over min that starts with a number less than min
+  // Ex: typing out 100 would cause the error to jarringly show at 1 then disappear at 10
+  const debouncedDonation = useDebounce(donation, 500);
+
   useEffect(() => {
     if (donation && donation >= minDonation) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
-  }, [donation]);
+  }, [donation, minDonation]);
 
   useEffect(() => {
     setProgress((totalDonated / donationGoal) * 100);
-  }, [totalDonated]);
+  }, [donationGoal, totalDonated]);
 
   useEffect(() => {
     if (progress >= 100) setIsFunded(true);
@@ -97,7 +106,10 @@ export const DonationBlock = () => {
         <div
           className="error"
           style={{
-            maxHeight: donation && donation < minDonation ? "20px" : "0px",
+            maxHeight:
+              debouncedDonation && debouncedDonation < minDonation
+                ? "20px"
+                : "0px",
           }}
         >
           Your donation must be at least $5.
