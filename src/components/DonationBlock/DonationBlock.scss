@@ -1,0 +1,78 @@
+.donation-block {
+  width: 400px;
+  max-width: calc(100vw - 16px);
+  .popout {
+    background-color: #e3ebfd;
+    padding: 8px 12px 13px 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    position: relative;
+    &:before {
+      content: "";
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 14px 14.5px 0 14.5px;
+      border-color: #e3ebfd transparent transparent transparent;
+      position: absolute;
+      top: 100%;
+      right: 10%;
+    }
+    p {
+      margin: unset;
+      color: #5d75d6;
+    }
+  }
+  .progress-bar {
+    height: 10px;
+    background-color: #b4f0e4;
+    border-radius: 4px 4px 0 0;
+    overflow: hidden;
+    .progress {
+      background-color: #14bd98;
+      height: 100%;
+      width: 0%;
+      max-width: 100%;
+      transition: width 0.3s ease-in-out;
+    }
+  }
+  .donation-body {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #fff;
+    border-radius: 0px 0px 4px 4px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 5px;
+    overflow: hidden;
+    form {
+      display: flex;
+      position: relative;
+      .input-dollar {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-49%);
+        color: #a9aab3;
+        font-weight: 700;
+        font-size: 17px;
+        left: 11px;
+      }
+      #donation-field {
+        font-size: 20px;
+        flex: 2;
+        border-right: unset;
+        border-radius: 4pt 0 0 4pt;
+      }
+      button {
+        flex: 1;
+        border-radius: 0 4pt 4pt 0;
+      }
+    }
+    .error {
+      max-height: 20px;
+      overflow: hidden;
+      color: #ff0033;
+      transition: max-height 0.2s ease-in-out;
+    }
+  }
+}

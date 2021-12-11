@@ -1,13 +1,65 @@
+// Import Poppins & IBM Plex Sans fonts
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Poppins:wght@400;700&display=swap");
+
+$poppins: "Poppins", sans-serif;
+$ibm-plex-sans: "IBM Plex Sans", sans-serif;
+$green: #14bd98;
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  &,
+  * {
+    box-sizing: border-box;
+    font-family: $ibm-plex-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $poppins;
+  font-weight: 700;
+  margin: unset;
+}
+
+input {
+  font-family: $ibm-plex-sans;
+  font-weight: bold;
+  padding: 10px 25px 11px;
+  border: 1px solid #ccc;
+  min-width: 0;
+}
+
+button {
+  color: #fff;
+  background-color: $green;
+  border: none;
+  font-family: $ibm-plex-sans;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 12px;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+  cursor: pointer;
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+input,
+button {
+  transition: box-shadow 0.2s ease-in-out;
+  &:focus,
+  &:hover:not(:disabled) {
+    outline: none;
+    -webkit-box-shadow: 0px 0px 5px $green;
+    box-shadow: 0px 0px 5px $green;
+  }
 }
